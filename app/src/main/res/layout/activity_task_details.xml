@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".taskDetails">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="215dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23"
+        app:srcCompat="@drawable/broom" />
+
+    <TextView
+        android:id="@+id/rossIpsum"
+        android:layout_width="315dp"
+        android:layout_height="364dp"
+        android:layout_marginBottom="56dp"
+        android:text="The more we do this - the more it will do good things to our heart. We don't have to be committed. We are just playing here. Making all those little fluffies that live in the clouds. Automatically, all of these beautiful, beautiful things will happen. Just think about these things in your mind and drop em' on canvas. If you don't like it - change it. It's your world.  You're meant to have fun in life. In painting, you have unlimited power. You have the ability to move mountains. I sincerely wish for you every possible joy life could bring. These things happen automatically. All you have to do is just let them happen.  That's a son of a gun of a cloud. Don't be afraid to make these big decisions. Once you start, they sort of just make themselves. You gotta think like a tree. Let's put some happy little bushes on the other side now. Just make a decision and let it go. Let's make a happy little mountain now."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
