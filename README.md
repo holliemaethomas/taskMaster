@@ -30,7 +30,7 @@ The all tasks page should just be an image with a back button.
 **Task Detail Page**
 Create a Task Detail page. It should have a title at the top of the page, and a Lorem Ipsum description.
 
-<img src="screenshots/taskDetails" alt="drawing" width="200"/>
+<img src="screenshots/taskDetails.png" alt="drawing" width="200"/>
 
 **Settings Page**
 Create a Settings page. It should allow users to enter their username and hit save.
