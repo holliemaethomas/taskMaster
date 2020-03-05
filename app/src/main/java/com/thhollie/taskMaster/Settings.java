@@ -2,19 +2,6 @@ package com.thhollie.taskMaster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
-import com.google.android.material.textfield.TextInputEditText;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -23,7 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class appSettings extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

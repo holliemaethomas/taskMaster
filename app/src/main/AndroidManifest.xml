@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".taskDetails"></activity>
+        <activity android:name=".activty_all_tasks"></activity>
+        <activity android:name=".fragment_task_list" />
+        <activity android:name=".fragment_task" />
+        <activity android:name=".taskDetails" />
         <activity android:name=".appSettings" />
         <activity android:name=".addTask" />
         <activity android:name=".viewTasks" />

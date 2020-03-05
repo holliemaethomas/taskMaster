@@ -1,59 +1,144 @@
 package com.thhollie.taskMaster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.Button;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "ThHollie.main";
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
+public class MainActivity extends AppCompatActivity implements MyTaskRecyclerViewAdapter.OnTaskClickedListener {
+
+    private static final String TAG = "Rachael";
+    private AWSAppSyncClient mAWSAppSyncClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Grab the buttons
+        View b1 = findViewById(R.id.button1);
+        View b2 = findViewById(R.id.button2);
 
-        Button addTask = findViewById(R.id.goToAddTaskBtn);
-        addTask.setOnClickListener((v) -> {
-            Intent addToTaskList = new Intent(MainActivity.this, addTask.class);
-            MainActivity.this.startActivity(addToTaskList);
+
+        View set = findViewById(R.id.settings);
+
+        //Set up the event listeners
+        b1.setOnClickListener((v) -> {
+            Intent i = new Intent(this, AddTask.class);
+            startActivity(i);
         });
 
-        Button viewTaskList = findViewById(R.id.viewTasks);
-        viewTaskList.setOnClickListener((v) -> {
-            Intent showTaskList = new Intent(MainActivity.this, viewTasks.class);
-            MainActivity.this.startActivity(showTaskList);
+        b2.setOnClickListener((v) -> {
+            Intent i = new Intent(this, AllTasks.class);
+            startActivity(i);
         });
 
-        Button appSettings = findViewById(R.id.appSettingsButton);
-        appSettings.setOnClickListener((v) -> {
-            Intent goToSettingsActivity = new Intent(MainActivity.this, com.thhollie.taskMaster.appSettings.class);
-            MainActivity.this.startActivity(goToSettingsActivity);
+        set.setOnClickListener((v) -> {
+            Intent i = new Intent(this, Settings.class);
+            startActivity(i);
         });
 
-        Button taskDetails = findViewById(R.id.taskDetailsButton);
-        taskDetails.setOnClickListener((v) -> {
-            Intent viewTaskDetails = new Intent(MainActivity.this, com.thhollie.taskMaster.taskDetails.class);
-            MainActivity.this.startActivity(viewTaskDetails);
+        View logout = findViewById(R.id.logout);
+        logout.setOnClickListener((v) -> {
+            String username = AWSMobileClient.getInstance().getUsername();
+            AWSMobileClient.getInstance().signOut();
+
+            AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+
+                        @Override
+                        public void onResult(UserStateDetails userStateDetails) {
+                            Log.i("INIT", "onResult: " + userStateDetails.getUserState());
+                            if (userStateDetails.getUserState().equals(UserState.SIGNED_OUT)) {
+                                AWSMobileClient.getInstance().showSignIn(MainActivity.this, new Callback<UserStateDetails>() {
+
+                                    @Override
+                                    public void onResult(UserStateDetails result) {
+                                        Log.d(TAG, "onResult: " + result.getUserState());
+
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Log.e(TAG, "onError: ", e);
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Log.e("INIT", "Initialization error.", e);
+                        }
+                    }
+            );
+
         });
 
+        //TODO Put this code into a method
+        AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+
+                    @Override
+                    public void onResult(UserStateDetails userStateDetails) {
+                        Log.i("INIT", "onResult: " + userStateDetails.getUserState());
+                        if (userStateDetails.getUserState().equals(UserState.SIGNED_OUT)) {
+                            AWSMobileClient.getInstance().showSignIn(MainActivity.this, new Callback<UserStateDetails>() {
+
+                                @Override
+                                public void onResult(UserStateDetails result) {
+                                    Log.d(TAG, "onResult: " + result.getUserState());
+
+                                }
+
+                                @Override
+                                public void onError(Exception e) {
+                                    Log.e(TAG, "onError: ", e);
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("INIT", "Initialization error.", e);
+                    }
+                }
+        );
 
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences userLoggedIn = PreferenceManager.getDefaultSharedPreferences(this);
-        String userID = userLoggedIn.getString("username", "default");
-        TextView headerTask = findViewById(R.id.mainHeader);
-        headerTask.setText(userID);
+        Log.i(TAG, "We are in onResume yay!");
+
+        //Check to see if there is a user saved in Shared Preferences
+//        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
+//        String name = p.getString("user", "def");
+//        Log.i(TAG, name);
+        TextView user = findViewById(R.id.userTasks);
+
+//        if (!name.equals("def")) {
+//            String text = name + "'s Tasks";
+//            user.setText(text);
+//        }
+
+        String username = AWSMobileClient.getInstance().getUsername();
+        user.setText(username + "'s Tasks");
     }
 
+    @Override
+    public void taskClicked(ListTasksQuery.Item t) {
+        Intent i = new Intent(this, TaskDetail.class);
+        i.putExtra("title", t.title());
+        i.putExtra("details", t.details());
+        i.putExtra("state", t.state());
+        startActivity(i);
 
-
+    }
 }
