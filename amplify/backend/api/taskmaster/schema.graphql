@@ -4,4 +4,11 @@ type Task @model {
   body: String
   name: String
   taskState: String
+   team: Team @connection(name: "TeamTasks")
+}
+
+type Team @model {
+    id: ID!
+    team: String
+    tasks: [Task] @connection(name: "TeamTasks")
 }

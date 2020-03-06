@@ -8,6 +8,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.UserState;
+import com.amazonaws.mobile.client.UserStateDetails;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 
 
 public class MainActivity extends AppCompatActivity implements MyTaskRecyclerViewAdapter.OnTaskClickedListener {
@@ -115,18 +121,8 @@ public class MainActivity extends AppCompatActivity implements MyTaskRecyclerVie
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG, "We are in onResume yay!");
 
-        //Check to see if there is a user saved in Shared Preferences
-//        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
-//        String name = p.getString("user", "def");
-//        Log.i(TAG, name);
         TextView user = findViewById(R.id.userTasks);
-
-//        if (!name.equals("def")) {
-//            String text = name + "'s Tasks";
-//            user.setText(text);
-//        }
 
         String username = AWSMobileClient.getInstance().getUsername();
         user.setText(username + "'s Tasks");
@@ -136,8 +132,8 @@ public class MainActivity extends AppCompatActivity implements MyTaskRecyclerVie
     public void taskClicked(ListTasksQuery.Item t) {
         Intent i = new Intent(this, TaskDetail.class);
         i.putExtra("title", t.title());
-        i.putExtra("details", t.details());
-        i.putExtra("state", t.state());
+        i.putExtra("details", t.body());
+        i.putExtra("state", t.taskState());
         startActivity(i);
 
     }
