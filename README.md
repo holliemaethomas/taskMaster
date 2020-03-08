@@ -24,6 +24,8 @@ The all tasks page should just be an image with a back button.
 
 
 
+
+
 ## Lab Two Feature Tasks
 
 
@@ -65,5 +67,24 @@ Following the directions provided in the Android documentation, set up Room in y
 
 <img src="screenshots/Room.png" alt="drawing" width="200"/>
 
+
+## Lab Five Feature Tasks (Intent Filter) 
+
+
+**Adding a Task from another application**
+Add an intent filter to your application such that a user can hit the “share” button on an image in another application, choose TaskMaster as the app to share that image with, and be taken directly to the Add a Task activity with that image pre-selected
+
+<img src="screenshots/Room.png" alt="drawing" width="200"/>
+
+
+## Lab Six Feature Tasks (Cognito) 
+
+
+**add Log in**
+Add Cognito to your Amplify setup. Add in user login and sign up flows to your application, using Cognito’s pre-built UI as appropriate. Display the logged in user’s username somewhere relevant in your app.
+
+
+
+<img src="screenshots/cognito.png" alt="drawing" width="200"/>
 
 
