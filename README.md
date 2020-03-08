@@ -26,6 +26,8 @@ The all tasks page should just be an image with a back button.
 
 
 
+
+
 ## Lab Two Feature Tasks
 
 
@@ -86,5 +88,18 @@ Add Cognito to your Amplify setup. Add in user login and sign up flows to your a
 
 
 <img src="screenshots/cognito.png" alt="drawing" width="200"/>
+
+
+## Lab 8 Feature Tasks (S3) 
+
+
+**S3**
+On the “Add a Task” activity, allow users to optionally select a file to attach to that task. If a user attaches a file to a task, that file should be uploaded to S3, and associated with that task.
+
+
+
+<img src="screenshots/S3.png" alt="drawing" width="200"/>
+
+
 
 
