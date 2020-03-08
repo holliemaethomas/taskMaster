@@ -100,7 +100,7 @@ On the “Add a Task” activity, allow users to optionally select a file to att
 
 <img src="screenshots/S3.png" alt="drawing" width="200"/>
 
-<img src="screenshots/S3image.png" alt="drawing" width="200"/>
+<img src="screenshots/s3image.png" alt="drawing" width="200"/>
 
 
 
