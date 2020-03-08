@@ -144,6 +144,7 @@
                 android:text="@string/team_c"
                 android:textAlignment="textStart" />
         </RadioGroup>
+
     </RadioGroup>
 
     <Button
@@ -155,5 +156,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="87dp"
+        android:layout_height="347dp"
+        app:srcCompat="@drawable/broom"
+        tools:layout_editor_absoluteX="588dp"
+        tools:layout_editor_absoluteY="825dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="119dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="273dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:srcCompat="@drawable/fire" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
